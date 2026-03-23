@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Any
 
 from lab_robot.base import RobotDriver, RobotExecutor
-
 from lab_robot.types import (
     ActionResult,
     ActionStatus,

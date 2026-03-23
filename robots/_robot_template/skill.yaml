@@ -1,0 +1,19 @@
+name: "your-robot-name"
+version: "0.1.0"
+vendor: "Your Vendor"
+category: "manipulation"
+robot_category: "manipulation"
+model: ""
+description: "Short description of what this robot does"
+platform: "cross"
+control_modes:
+  - api
+robot_capabilities:
+  degrees_of_freedom: 0
+  payload_kg: 0.0
+  repeatability_mm: 0.0
+  end_effectors: []
+  labware_types: []
+  safety_features: []
+safety_level: "critical"
+dependencies: []

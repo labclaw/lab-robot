@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from lab_robot.safety import SafetyVerdict, WorkspaceBounds, validate_workspace_bounds
-
 from lab_robot.types import MoveAction
 
 
