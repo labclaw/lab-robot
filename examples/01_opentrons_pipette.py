@@ -14,20 +14,29 @@ import asyncio
 
 from lab_robot.types import PipetteAction
 from robots.opentrons_ot2.driver import OT2Driver
-from robots.opentrons_ot2.models import OT2DeckConfig, OT2PipetteConfig
+from robots.opentrons_ot2.models import (
+    LabwareConfig,
+    OT2DeckConfig,
+    PipetteConfig,
+    PipetteMount,
+)
 
 
 async def main() -> None:
     """Run a simulated OT-2 pipette transfer."""
     # 1. Configure the deck
     deck = OT2DeckConfig(
-        labware={
-            "1": "opentrons_96_tiprack_300ul",
-            "2": "corning_96_wellplate_360ul_flat",
-            "3": "corning_96_wellplate_360ul_flat",
+        slots={
+            "1": LabwareConfig(labware_type="opentrons_96_tiprack_300ul", label="tips"),
+            "2": LabwareConfig(labware_type="corning_96_wellplate_360ul_flat", label="source"),
+            "3": LabwareConfig(labware_type="corning_96_wellplate_360ul_flat", label="dest"),
         },
-        pipettes={"left": OT2PipetteConfig(name="p300_single", tip_rack_slot="1")},
-        tip_rack_slot="1",
+        pipette_left=PipetteConfig(
+            name="p300_single",
+            mount=PipetteMount.LEFT,
+            max_volume_ul=300.0,
+            tip_rack_slots=["1"],
+        ),
     )
 
     # 2. Create driver in simulate mode
@@ -44,8 +53,8 @@ async def main() -> None:
         volume_ul=100.0,
         source_well="A1",
         dest_well="B1",
-        source_labware="source_plate",
-        dest_labware="dest_plate",
+        source_labware="source",
+        dest_labware="dest",
     )
     result = await driver.execute(action)
     print(f"Result: success={result.success}, status={result.status}")

@@ -22,6 +22,15 @@ class TestSafetyVerdict:
 
 
 class TestWorkspaceBounds:
+    def test_non_move_action_allowed(self) -> None:
+        """Non-move actions skip bounds checking entirely."""
+        from lab_robot.types import PipetteAction
+
+        bounds = WorkspaceBounds()
+        action = PipetteAction(volume_ul=30.0, source_well="A1", dest_well="B1")
+        verdict = validate_workspace_bounds(action, bounds)
+        assert verdict.allowed
+
     def test_within_bounds(self) -> None:
         bounds = WorkspaceBounds(x_min=0, x_max=400, y_min=0, y_max=400, z_min=0, z_max=200)
         action = MoveAction(target_position={"x": 100, "y": 200, "z": 50})
