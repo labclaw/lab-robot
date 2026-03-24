@@ -36,6 +36,9 @@ dev = [
 
 [project.urls]
 Repository = "https://github.com/labclaw/lab-robot"
+Documentation = "https://github.com/labclaw/lab-robot/tree/main/docs"
+Issues = "https://github.com/labclaw/lab-robot/issues"
+Changelog = "https://github.com/labclaw/lab-robot/blob/main/CHANGELOG.md"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/lab_robot", "robots"]
