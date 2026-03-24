@@ -101,3 +101,20 @@ class TestRobotExecutor:
         action = PipetteAction(volume_ul=30.0, source_well="A1", dest_well="B1")
         result = await executor.execute(action)
         assert not result.success
+
+
+def test_version_fallback_on_missing_package() -> None:
+    """When package metadata is unavailable, __version__ falls back to '0.1.0'."""
+    import subprocess
+    import sys
+
+    code = (
+        "import importlib.metadata, unittest.mock as m, sys\n"
+        "with m.patch('importlib.metadata.version',\n"
+        "              side_effect=importlib.metadata.PackageNotFoundError('x')):\n"
+        "    sys.modules.pop('lab_robot', None)\n"
+        "    import lab_robot\n"
+        "    print(lab_robot.__version__)\n"
+    )
+    result = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True)
+    assert result.stdout.strip() == "0.1.0"
