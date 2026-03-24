@@ -21,7 +21,7 @@ from lab_robot.types import (
 from .models import OT2DeckConfig
 from .protocol_gen import generate_protocol_commands
 
-_SUPPORTED_ACTIONS = [ActionType.PIPETTE]
+_SUPPORTED_ACTIONS = (ActionType.PIPETTE,)
 
 
 class OT2Driver:

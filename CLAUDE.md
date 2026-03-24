@@ -33,5 +33,5 @@ Same as device-skills: ruff (E,F,I,N,W,UP), line-length 100, type hints required
 - `RobotDriver` — async Protocol for robot hardware (execute actions, not read data)
 - `RobotManifest` — extends SkillManifest with robot-specific fields
 - `ActionResult` — rich result with success, state, measurements, error detail
-- `RobotSafetyGuard` — chain-of-responsibility safety (force, workspace, collision)
+- `RobotSafetyGuard` — chain-of-responsibility safety (planned: force, workspace, collision)
 - PEI primitives: Layer 0 (motion), Layer 1 (lab-ops), Layer 2 (perception), Layer 3 (system)

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from importlib.metadata import PackageNotFoundError, version
+
 from lab_robot.base import RobotDriver, RobotExecutor
 from lab_robot.safety import SafetyVerdict, WorkspaceBounds, validate_workspace_bounds
 from lab_robot.schema import RobotCapabilities, RobotCategory, RobotManifest, RobotSafetyLevel
@@ -16,7 +18,10 @@ from lab_robot.types import (
     TransferLabwareAction,
 )
 
-__version__ = "0.1.0"
+try:
+    __version__ = version("lab-robot")
+except PackageNotFoundError:
+    __version__ = "0.1.0"
 
 __all__ = [
     "ActionResult",
