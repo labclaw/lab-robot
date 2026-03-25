@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
+
+# Linting
+.ruff_cache/
+.mypy_cache/
+
+# Packaging
+*.egg-info/
+dist/
+build/
+.eggs/
+uv.lock
+
+# Secrets (defensive)
+.env
+.env.*
+*.pem
+*.key

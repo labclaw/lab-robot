@@ -1,0 +1,36 @@
+name: "opentrons-ot2"
+version: "0.1.0"
+vendor: "Opentrons"
+category: "liquid-handling"
+robot_category: "liquid-handling"
+model: "OT-2"
+description: "Opentrons OT-2 — open-source liquid handling robot for 96/384-well plates"
+platform: "cross"
+control_modes:
+  - api
+  - offline
+robot_capabilities:
+  degrees_of_freedom: 3  # X, Y, Z gantry
+  payload_kg: 0.0        # no arm payload — pipette-based
+  repeatability_mm: 0.1   # ±0.1mm positioning
+  end_effectors:
+    - single_channel_p20
+    - single_channel_p300
+    - single_channel_p1000
+    - multi_channel_p20
+    - multi_channel_p300
+  labware_types:
+    - tiprack_20ul
+    - tiprack_300ul
+    - tiprack_1000ul
+    - wellplate_96_flat
+    - wellplate_384
+    - reservoir_12well
+    - tuberack_15ml
+  safety_features:
+    - software_limits
+    - tip_detection
+    - deck_collision_prevention
+safety_level: "critical"
+dependencies:
+  - opentrons

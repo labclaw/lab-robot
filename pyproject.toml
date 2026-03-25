@@ -1,0 +1,78 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lab-robot"
+version = "0.1.0"
+description = "Physical Execution Interface for science labs — connect AI brains to robot bodies"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.11"
+authors = [{ name = "LabClaw Team" }]
+keywords = ["lab-automation", "robotics", "physical-ai", "science"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Typing :: Typed",
+]
+dependencies = [
+    "pydantic>=2.0.0,<3.0.0",
+    "pyyaml>=6.0,<7.0",
+]
+
+[project.optional-dependencies]
+opentrons = ["opentrons>=8.0"]
+dev = [
+    "pytest>=8.0,<10.0",
+    "pytest-asyncio>=0.24,<2.0",
+    "pytest-cov>=6.0,<8.0",
+    "ruff>=0.6.0,<1.0.0",
+    "mypy>=1.11,<2.0",
+]
+
+[project.urls]
+Repository = "https://github.com/labclaw/lab-robot"
+Documentation = "https://github.com/labclaw/lab-robot/tree/main/docs"
+Issues = "https://github.com/labclaw/lab-robot/issues"
+Changelog = "https://github.com/labclaw/lab-robot/blob/main/CHANGELOG.md"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lab_robot", "robots"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+"robots/*/__init__.py" = ["N999"]
+"robots/*/tests/__init__.py" = ["N999"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "robots"]
+asyncio_mode = "auto"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+check_untyped_defs = true
+
+[tool.coverage.run]
+source = ["lab_robot", "robots"]
+omit = ["*/tests/*", "*/_robot_template/*"]
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "v$version"
+
+[tool.coverage.report]
+fail_under = 100
