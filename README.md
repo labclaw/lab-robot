@@ -108,7 +108,7 @@ If you use lab-robot in your research, please cite:
 @software{labclaw_lab_robot,
   author    = {LabClaw Team},
   title     = {lab-robot: Physical Execution Interface for Science Labs},
-  year      = {2025},
+  year      = {2026},
   url       = {https://github.com/labclaw/lab-robot},
   license   = {Apache-2.0}
 }
